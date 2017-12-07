@@ -36,6 +36,8 @@ public class MainFragment extends BaseFragment<ActivityMain2Binding> {
                     });
                     mViewBindings.recycler.setLayoutManager(new LinearLayoutManager(getContext()));
                 });
+
+
     }
 
     @Override
