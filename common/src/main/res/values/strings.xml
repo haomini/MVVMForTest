@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">common</string>
+    <string name="net_error">加载失败~</string>
+    <string name="no_data">空无一物~</string>
 </resources>

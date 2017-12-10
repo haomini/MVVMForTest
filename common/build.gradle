@@ -40,6 +40,7 @@ dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
 
     api "com.android.support:appcompat-v7:$rootProject.ext.android_supportVersion"
+    api "com.android.support:design:$rootProject.ext.android_supportVersion"
 
     androidTestApi 'com.android.support.test:runner:1.0.1'
     androidTestApi 'com.android.support.test.espresso:espresso-core:3.0.1'

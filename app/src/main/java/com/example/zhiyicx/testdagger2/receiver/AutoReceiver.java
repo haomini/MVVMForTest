@@ -4,20 +4,19 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.example.zhiyicx.testdagger2.Main2Activity;
+import com.example.zhiyicx.testdagger2.modules.HomeActivity;
 
 /**
  * @Describe
  * @Author zhouhao
- * @Date 2017/12/7
+ * @Date 2017/12/9
  * @Contact 605626708@qq.com
  */
 
 public class AutoReceiver extends BroadcastReceiver {
-
     @Override
     public void onReceive(Context context, Intent intent) {
-        Intent actionIntent = new Intent(context, Main2Activity.class);
+        Intent actionIntent = new Intent(context, HomeActivity.class);
         actionIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(actionIntent);
     }

@@ -1,6 +1,10 @@
 package com.example.common.base;
 
 import android.databinding.ViewDataBinding;
+import android.support.v7.widget.LinearLayoutManager;
+
+import com.example.common.R;
+import com.example.common.databinding.BaseListLayoutBinding;
 
 /**
  * @Describe
@@ -9,10 +13,18 @@ import android.databinding.ViewDataBinding;
  * @Contact 605626708@qq.com
  */
 
-public class BaseListFragment<DB extends ViewDataBinding> extends BaseFragment<DB> {
+public abstract class BaseListFragment<LVM extends BaseListViewModel, T extends Object> extends BaseFragment<ViewDataBinding, LVM> {
 
     @Override
     protected int getLayoutId() {
-        return 0;
+        return R.layout.base_list_layout;
     }
+
+    @Override
+    protected void initView() {
+        super.initView();
+        ((BaseListLayoutBinding) mViewBindings).recycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        ((BaseListLayoutBinding) mViewBindings).setListVM(getVM());
+    }
+
 }

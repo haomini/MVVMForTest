@@ -6,4 +6,5 @@
 
     <color name="white">#ffffffff</color>
     <color name="divider_default_color">#ededed</color>
+    <color name="gray">#999999</color>
 </resources>

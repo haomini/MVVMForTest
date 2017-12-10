@@ -39,11 +39,12 @@ public abstract class BaseActivity<T extends Fragment> extends RxAppCompatActivi
         setContentView(linearLayout);
 
         if (needPlaceStatusHolder()) {
-            StatusBarUtils.setStatusBarColor(this, R.color.white);
+            StatusBarUtils.setStatusBarColor(this, R.color.gray);
             if (needPlaceStatusHolder()) {
                 View view = new View(this);
                 view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                         DeviceUtils.getStatusBarHeight(this)));
+                view.setBackgroundColor(getResources().getColor(R.color.gray));
                 linearLayout.addView(view);
             }
         }

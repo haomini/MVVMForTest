@@ -1,36 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+        <variable
+            name="ElVm"
+            type="com.example.common.widget.EmptyLayout"/>
+        <import type="com.example.common.widget.EmptyLayout"/>
+        <import type="android.view.View"/>
+    </data>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/show"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="@{ElVm.show ? View.VISIBLE : View.GONE}">
 
             <ImageView
+                android:id="@+id/show_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:background="@mipmap/ic_launcher_round"/>
+                android:background="@{ElVm.state == ElVm.ERROR ? @drawable/loading_error : @drawable/empty}" />
 
             <TextView
+                android:id="@+id/show_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="40dp"
-                android:text="还没有数据~"/>
+                android:layout_marginTop="15dp"
+                android:text="@{ElVm.state == ElVm.ERROR ? @string/net_error : @string/no_data}" />
         </LinearLayout>
 
         <ProgressBar
+            android:id="@+id/progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:indeterminateDrawable="@drawable/empty_progress"/>
+            android:indeterminateDrawable="@drawable/frame_loading_grey"
+            android:visibility="@{ElVm.loading ? View.VISIBLE : View.GONE}" />
     </FrameLayout>
 </layout>

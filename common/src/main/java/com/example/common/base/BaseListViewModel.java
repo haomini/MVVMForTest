@@ -1,9 +1,16 @@
 package com.example.common.base;
 
 import android.content.Context;
-import android.util.Log;
+import android.databinding.ObservableInt;
+import android.support.v7.widget.RecyclerView;
 
-import com.example.common.databind.command.ReplyCommand;
+import com.example.common.databind.command.ReplyProcess;
+import com.example.common.databind.command.i.ICommand;
+import com.example.common.widget.EmptyLayout;
+import com.zhy.adapter.recyclerview.wrapper.HeaderAndFooterWrapper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -13,19 +20,46 @@ import com.example.common.databind.command.ReplyCommand;
  * @Contact 605626708@qq.com
  */
 
-public class BaseListViewModel extends BaseViewModel {
+public abstract class BaseListViewModel<T> extends BaseViewModel {
+
+    public HeaderAndFooterWrapper mHeaderAndFooterWrapper;
+    public RecyclerView.Adapter mAdapter;
+    public ObservableInt mSmartRefreshLayoutState = new ObservableInt(1);
+    public ObservableInt mEmptyState = new ObservableInt(EmptyLayout.LOADING);
+    protected List<T> mListDatas = new ArrayList<>();
 
     // 刷新指令
-    public ReplyCommand onRefreshCommand = new ReplyCommand(o ->
-            Log.e("BaseListViewModel", "(): " + "onRefreshCommand do!")
-    );
+    public ReplyProcess onRefreshCommand;
 
     // 加载指令
-    public ReplyCommand onLoadCommand = new ReplyCommand(o ->
-            Log.e("BaseListViewModel", "(): " + "onLoadCommand do!")
-    );
+    public ReplyProcess onLoadCommand;
+
+    // 空布局点击事件
+    public ReplyProcess onEmptyClicked;
 
     public BaseListViewModel(Context context) {
         super(context);
+        mAdapter = getAdapter();
+        mHeaderAndFooterWrapper = new HeaderAndFooterWrapper(mAdapter);
+        onRefreshCommand = new ReplyProcess(getRefreshCommand());
+        onLoadCommand = new ReplyProcess(getLoadMoreCommand());
+        onEmptyClicked = new ReplyProcess(getEmptyCommand());
+    }
+
+    // 提供刷新指令 must
+    protected abstract ICommand getRefreshCommand();
+
+    // adapter
+    protected abstract RecyclerView.Adapter getAdapter();
+
+    // 提供加载指令 well
+    protected ICommand getLoadMoreCommand() {
+        return () -> {
+        };
+    }
+
+    protected ICommand getEmptyCommand(){
+        return () -> {
+        };
     }
 }

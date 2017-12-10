@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,10 +25,11 @@ import org.greenrobot.eventbus.EventBus;
  * @Contact 605626708@qq.com
  */
 
-public abstract class BaseFragment<DB extends ViewDataBinding> extends Fragment {
+public abstract class BaseFragment<DB extends ViewDataBinding, VM extends BaseViewModel> extends Fragment {
 
     protected BaseTitleLayoutBinding mTitleBinding;
     protected DB mViewBindings;
+    protected VM mVm;
 
     @Nullable
     @Override
@@ -48,6 +50,7 @@ public abstract class BaseFragment<DB extends ViewDataBinding> extends Fragment 
             divider.setBackgroundColor(getResources().getColor(R.color.divider_default_color));
             linearLayout.addView(divider);
         }
+        initTitle();
         mViewBindings = DataBindingUtil.inflate(inflater, getLayoutId(), container, false);
         linearLayout.addView(mViewBindings.getRoot());
 
@@ -59,6 +62,12 @@ public abstract class BaseFragment<DB extends ViewDataBinding> extends Fragment 
         return linearLayout;
     }
 
+    private void initTitle() {
+        mTitleBinding.titleCenter.setText(TextUtils.isEmpty(getTitleCenter()) ? "" : getTitleCenter());
+        mTitleBinding.titleLeftImg.setVisibility(needLeftIcon() ? View.VISIBLE : View.GONE);
+        mTitleBinding.titleLeftText.setText(TextUtils.isEmpty(getTitleLeft()) ? "" : getTitleLeft());
+    }
+
     protected void initIntentData() {
 
     }
@@ -67,12 +76,30 @@ public abstract class BaseFragment<DB extends ViewDataBinding> extends Fragment 
 
     }
 
+    protected abstract VM getVM();
+
     protected boolean needTitle() {
         return true;
     }
 
     protected boolean needDivider() {
         return true;
+    }
+
+    protected CharSequence getTitleCenter() {
+        return null;
+    }
+
+    protected boolean needLeftIcon() {
+        return true;
+    }
+
+    protected String getTitleLeft() {
+        return null;
+    }
+
+    protected View.OnClickListener getLeftListener() {
+        return null;
     }
 
     @Override
