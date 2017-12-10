@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.example.zhiyicx.testdagger2.modules.HomeActivity;
+import com.example.zhiyicx.testdagger2.modules.home.HomeActivity;
 
 /**
  * @Describe

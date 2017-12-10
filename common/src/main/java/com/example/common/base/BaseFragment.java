@@ -50,7 +50,6 @@ public abstract class BaseFragment<DB extends ViewDataBinding, VM extends BaseVi
             divider.setBackgroundColor(getResources().getColor(R.color.divider_default_color));
             linearLayout.addView(divider);
         }
-        initTitle();
         mViewBindings = DataBindingUtil.inflate(inflater, getLayoutId(), container, false);
         linearLayout.addView(mViewBindings.getRoot());
 
@@ -58,6 +57,7 @@ public abstract class BaseFragment<DB extends ViewDataBinding, VM extends BaseVi
             EventBus.getDefault().register(this);
 
         initIntentData();
+        initTitle();
         initView();
         return linearLayout;
     }
@@ -66,6 +66,7 @@ public abstract class BaseFragment<DB extends ViewDataBinding, VM extends BaseVi
         mTitleBinding.titleCenter.setText(TextUtils.isEmpty(getTitleCenter()) ? "" : getTitleCenter());
         mTitleBinding.titleLeftImg.setVisibility(needLeftIcon() ? View.VISIBLE : View.GONE);
         mTitleBinding.titleLeftText.setText(TextUtils.isEmpty(getTitleLeft()) ? "" : getTitleLeft());
+        mTitleBinding.titleLeft.setOnClickListener(getLeftListener());
     }
 
     protected void initIntentData() {

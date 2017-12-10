@@ -1,5 +1,6 @@
 package com.example.common.util;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Dialog;
@@ -18,6 +19,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.os.PowerManager;
+import android.support.v4.app.ActivityCompat;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -296,8 +298,7 @@ public class DeviceUtils {
             flag = true;
         else if (GTE_ICS) {
             flag = ViewConfiguration.get(context).hasPermanentMenuKey();
-        }
-        else
+        } else
             flag = false;
         return flag;
     }
@@ -632,8 +633,7 @@ public class DeviceUtils {
                 .getLaunchIntentForPackage(packageName);
         if (mainIntent == null) {
             mainIntent = new Intent(packageName);
-        }
-        else {
+        } else {
         }
         context.startActivity(mainIntent);
     }
@@ -748,8 +748,7 @@ public class DeviceUtils {
         WindowManager.LayoutParams attrs = activity.getWindow().getAttributes();
         if ((attrs.flags & WindowManager.LayoutParams.FLAG_FULLSCREEN) == WindowManager.LayoutParams.FLAG_FULLSCREEN) {
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }
@@ -788,13 +787,11 @@ public class DeviceUtils {
             if (extraInfo != null && !extraInfo.isEmpty()) {
                 if (extraInfo.toLowerCase().equals("cmnet")) {
                     netType = NETTYPE_CMNET;
-                }
-                else {
+                } else {
                     netType = NETTYPE_CMWAP;
                 }
             }
-        }
-        else if (nType == ConnectivityManager.TYPE_WIFI) {
+        } else if (nType == ConnectivityManager.TYPE_WIFI) {
             netType = NETTYPE_WIFI;
         }
         return netType;
@@ -839,7 +836,26 @@ public class DeviceUtils {
             return false;
     }
 
+    /**
+     * 获取手机型号
+     * @return String 手机型号
+     */
+    public static String getSysModel() {
+        return Build.MODEL;
+    }
 
+    /**
+     * 获取手机imei串号 ,GSM手机的 IMEI 和 CDMA手机的 MEID.
+     *
+     * @param context
+     */
+    public String getPhoneImei(Context context) {
+        TelephonyManager tm = (TelephonyManager) context
+                .getSystemService(Context.TELEPHONY_SERVICE);
+        if (tm == null)
+            return null;
+        return tm.getDeviceId();
+    }
 }
 
 

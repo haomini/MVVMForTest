@@ -1,4 +1,4 @@
-package com.example.zhiyicx.testdagger2.modules;
+package com.example.zhiyicx.testdagger2.modules.home;
 
 import com.example.common.base.BaseActivity;
 

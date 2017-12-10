@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.intent.action.BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
         android:name="com.example.common.app.BaseApplication"
@@ -16,13 +17,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".modules.HomeActivity">
+        <activity android:name=".modules.home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".modules.detail.ApkDetailActivity"/>
         <receiver android:name=".receiver.AutoReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

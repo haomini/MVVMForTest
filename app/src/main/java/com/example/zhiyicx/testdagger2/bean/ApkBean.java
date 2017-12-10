@@ -1,5 +1,7 @@
 package com.example.zhiyicx.testdagger2.bean;
 
+import java.io.Serializable;
+
 /**
  * @Describe
  * @Author zhouhao
@@ -7,7 +9,7 @@ package com.example.zhiyicx.testdagger2.bean;
  * @Contact 605626708@qq.com
  */
 
-public class ApkBean {
+public class ApkBean implements Serializable{
 
     /**
      * id : 1
