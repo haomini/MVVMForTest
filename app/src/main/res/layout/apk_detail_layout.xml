@@ -100,7 +100,8 @@
                 android:paddingTop="10dp"
                 android:text="@{apkVM.mApkBean.getDescription()}" />
 
-            <TextView
+            <Button
+                android:id="@+id/install"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -109,6 +110,7 @@
                 android:gravity="center"
                 android:minHeight="35dp"
                 android:minWidth="180dp"
+                android:onClick="@{v->apkVM.onInstallClicked()}"
                 android:text="安装"
                 android:textColor="@color/white" />
 

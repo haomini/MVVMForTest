@@ -71,7 +71,7 @@ public class HomeViewModel extends BaseListViewModel<ApkBean> {
                             bean.setMode("小米8");
                             bean.setVersion("v2.0.1");
 
-                            bean.setDownload_url("http://111.178.233.108/file3.data.weipan.cn/60475765/8df0704e0f72ccc624b8ccfdcba559d612133112?ip=1512660646,118.113.45.117&ssig=1IufroStYV&Expires=1512661246&KID=sae,l30zoo1wmz&fn=%E9%92%A2%E9%93%81%E6%98%AF%E6%80%8E%E6%A0%B7%E7%82%BC%E6%88%90%E7%9A%84%20");
+                            bean.setDownload_url("http://211.161.127.167/download.sj.qq.com/update/QQPhoneManager-5.6.1_720002.4979.n.exe?mkey=5a2d43948cbf5629&f=b601&c=0&filename=QQPhoneManager-5.6.1_720002.4979.n.exe&p=.exe");
                             mListDatas.add(bean);
                             mHeaderAndFooterWrapper.notifyDataSetChanged();
                         }

@@ -9,6 +9,7 @@ import com.example.common.dagger2.module.HttpModule;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
+import com.tamic.novate.Novate;
 
 /**
  * @Describe
@@ -36,6 +37,7 @@ public class BaseApplication extends Application {
 
     private static BaseApplication mBaseApplication;
     private static AppComp appComp;
+    private static Novate novate;
 
     @Override
     public void onCreate() {
@@ -46,6 +48,12 @@ public class BaseApplication extends Application {
                 .appModule(new AppModule(this))
                 .httpModule(new HttpModule())
                 .build();
+
+        novate = new Novate.Builder(this)
+                .connectTimeout(20)
+                .baseUrl("http://systemapp.laoshi888.com/")
+                .addLog(true)
+                .build();
     }
 
     public static AppComp getAppComp() {
@@ -54,5 +62,9 @@ public class BaseApplication extends Application {
 
     public static BaseApplication getApp() {
         return mBaseApplication;
+    }
+
+    public static Novate getNovate() {
+        return novate;
     }
 }

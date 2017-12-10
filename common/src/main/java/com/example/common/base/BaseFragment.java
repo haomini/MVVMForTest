@@ -56,6 +56,8 @@ public abstract class BaseFragment<DB extends ViewDataBinding, VM extends BaseVi
         if (needEventBus())
             EventBus.getDefault().register(this);
 
+        mVm = getVM();
+
         initIntentData();
         initTitle();
         initView();

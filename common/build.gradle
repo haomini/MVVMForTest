@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 26
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
 
@@ -100,6 +100,9 @@ dependencies {
     api 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'//没有使用特殊Header，可以不加这行
 
     api 'org.greenrobot:eventbus:3.1.1'
+
+    // 下载库
+    compile 'com.tamic.novate:novate:1.5.2.3'
 }
 
 // 控制support组下包的版本一致
