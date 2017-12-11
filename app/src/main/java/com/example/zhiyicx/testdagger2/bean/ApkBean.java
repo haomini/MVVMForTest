@@ -1,5 +1,9 @@
 package com.example.zhiyicx.testdagger2.bean;
 
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Index;
+import org.greenrobot.greendao.annotation.Generated;
+
 import java.io.Serializable;
 
 /**
@@ -9,8 +13,10 @@ import java.io.Serializable;
  * @Contact 605626708@qq.com
  */
 
+@Entity
 public class ApkBean implements Serializable{
 
+    public static final long serialVersionUID = 536871008L;
     /**
      * id : 1
      * mode : 小米8
@@ -24,8 +30,9 @@ public class ApkBean implements Serializable{
      * upload_time : 2038-01-19 11:07:14
      * developer : 新一百科技有限公司
      */
-
+    @Index(unique = true)
     private int id;
+
     private String mode;
     private String name;
     private String Introduction;
@@ -34,6 +41,26 @@ public class ApkBean implements Serializable{
     private String version;
     private String upload_time;
     private String developer;
+
+    private long breakPosition;
+
+    @Generated(hash = 926026396)
+    public ApkBean(int id, String mode, String name, String Introduction, String description, String download_url, String version, String upload_time, String developer, long breakPosition) {
+        this.id = id;
+        this.mode = mode;
+        this.name = name;
+        this.Introduction = Introduction;
+        this.description = description;
+        this.download_url = download_url;
+        this.version = version;
+        this.upload_time = upload_time;
+        this.developer = developer;
+        this.breakPosition = breakPosition;
+    }
+
+    @Generated(hash = 2129966906)
+    public ApkBean() {
+    }
 
     public int getId() {
         return id;
@@ -105,5 +132,13 @@ public class ApkBean implements Serializable{
 
     public void setDeveloper(String developer) {
         this.developer = developer;
+    }
+
+    public long getBreakPosition() {
+        return this.breakPosition;
+    }
+
+    public void setBreakPosition(long breakPosition) {
+        this.breakPosition = breakPosition;
     }
 }

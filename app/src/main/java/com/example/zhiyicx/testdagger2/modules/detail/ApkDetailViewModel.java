@@ -3,7 +3,6 @@ package com.example.zhiyicx.testdagger2.modules.detail;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
 
 import com.example.common.app.BaseApplication;
 import com.example.common.base.BaseViewModel;
@@ -47,17 +46,13 @@ public class ApkDetailViewModel extends BaseViewModel {
 
                     @Override
                     public void onSucess(String key, String path, String name, long fileSize) {
-                        Log.e("TAG", "onSucess: ");
-                        // When the loop is finished, updates the notification
                         mBuilder.setContentText("下载完成")
-                                // Removes the progress bar
                                 .setProgress(0,0,false);
                         mNotifyManager.notify(101, mBuilder.build());
                     }
 
                     @Override
                     public void onProgress(String key, int progress, long fileSizeDownloaded, long totalSize) {
-                        Log.e("TAG", "onProgress: " + progress + " " + fileSizeDownloaded + " " + totalSize);
                         mBuilder.setProgress(100, progress, false);
                         mNotifyManager.notify(101, mBuilder.build());
                     }

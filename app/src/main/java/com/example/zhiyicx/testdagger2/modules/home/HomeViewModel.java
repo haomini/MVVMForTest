@@ -39,7 +39,7 @@ public class HomeViewModel extends BaseListViewModel<ApkBean> {
 
     public HomeViewModel(Context context) {
         super(context);
-        mHomeClient = HttpModule.provideRetrofit(BaseApplication.getApp()).create(HomeClient.class);
+        mHomeClient = HttpModule.provideRetrofit().create(HomeClient.class);
     }
 
     @Override
