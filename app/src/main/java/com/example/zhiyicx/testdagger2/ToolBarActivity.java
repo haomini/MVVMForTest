@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.zhiyicx.testdagger2.databinding.ActivityWithToolbarBinding;
-import com.example.zhiyicx.testdagger2.service.DoenloadService;
+import com.example.zhiyicx.testdagger2.service.DownloadService;
 
 /**
  * @Describe
@@ -31,6 +31,6 @@ public class ToolBarActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        startService(new Intent(this, DoenloadService.class));
+        startService(new Intent(this, DownloadService.class));
     }
 }

@@ -38,7 +38,7 @@ public class DoenloadService extends IntentService {
                 .setContentTitle("好贝贝")
                 .setContentText("连接中...");
         notificationManager.notify(101, notification.build());
-        DownloadUtils.nioDownload(startPos, new ProgressResponseBody.ProgressListener() {
+        DownloadUtils.nioDownload("", startPos, new ProgressResponseBody.ProgressListener() {
             @Override
             public void onPreExecute(long contentLength) {
                 notification.setProgress(100, progress, false);

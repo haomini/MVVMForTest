@@ -4,6 +4,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Url;
 
 /**
  * @Describe
@@ -14,6 +15,6 @@ import retrofit2.http.Header;
 
 public interface DownloadClient {
 
-    @GET("public/hbb_0_1_5.apk")
-    Call<ResponseBody> download(@Header("RANGE") String range);
+    @GET
+    Call<ResponseBody> download(@Url String url,  @Header("RANGE") String range);
 }

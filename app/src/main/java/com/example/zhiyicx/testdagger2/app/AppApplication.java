@@ -3,6 +3,8 @@ package com.example.zhiyicx.testdagger2.app;
 import com.example.common.app.BaseApplication;
 import com.example.zhiyicx.testdagger2.dagger2.comp.AppComp;
 import com.example.zhiyicx.testdagger2.dagger2.comp.DaggerAppComp;
+import com.example.zhiyicx.testdagger2.dagger2.module.ClientModule;
+import com.example.zhiyicx.testdagger2.dagger2.module.SqlModule;
 
 /**
  * @Describe
@@ -23,6 +25,8 @@ public class AppApplication extends BaseApplication {
 
         appComp = DaggerAppComp.builder()
                 .baseComp(getBaseComp())
+                .sqlModule(new SqlModule())
+                .clientModule(new ClientModule())
                 .build();
 
     }

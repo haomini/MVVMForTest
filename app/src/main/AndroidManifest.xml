@@ -22,11 +22,11 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".modules.home.HomeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN"/>-->
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--</intent-filter>-->
         </activity>
         <activity android:name=".modules.detail.ApkDetailActivity"/>
         <receiver android:name=".receiver.AutoReceiver">
@@ -35,11 +35,11 @@
             </intent-filter>
         </receiver>
         <activity android:name=".ToolBarActivity">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN"/>-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
-                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
-            <!--</intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <service android:name=".service.DoenloadService"/>
         <service android:name=".service.DownloadService"/>

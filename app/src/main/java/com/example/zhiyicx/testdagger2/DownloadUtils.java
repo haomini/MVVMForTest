@@ -48,7 +48,7 @@ public class DownloadUtils {
         }
     }
 
-    public static void nioDownload(long startPos, ProgressResponseBody.ProgressListener progressListener) {
+    public static void nioDownload(String url, long startPos, ProgressResponseBody.ProgressListener progressListener) {
         Interceptor interceptor = chain -> {
             Response originalResponse = chain.proceed(chain.request());
             return originalResponse.newBuilder()
@@ -67,7 +67,7 @@ public class DownloadUtils {
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
 
-        retrofit.create(DownloadClient.class).download("bytes=" + startPos + "-")
+        retrofit.create(DownloadClient.class).download(url, "bytes=" + startPos + "-")
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {

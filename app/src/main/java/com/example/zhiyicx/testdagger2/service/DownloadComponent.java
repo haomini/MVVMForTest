@@ -1,4 +1,4 @@
-package com.example.zhiyicx.testdagger2.modules.home;
+package com.example.zhiyicx.testdagger2.service;
 
 import com.example.zhiyicx.testdagger2.dagger2.comp.AppComp;
 
@@ -12,5 +12,5 @@ import dagger.MembersInjector;
  * @Contact 605626708@qq.com
  */
 @Component(dependencies = AppComp.class)
-public interface HomeComp extends MembersInjector<HomeViewModel>{
+public interface DownloadComponent extends MembersInjector<DownloadService>{
 }
