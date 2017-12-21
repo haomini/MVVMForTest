@@ -25,11 +25,10 @@ import org.greenrobot.eventbus.EventBus;
  * @Contact 605626708@qq.com
  */
 
-public abstract class BaseFragment<DB extends ViewDataBinding, VM extends BaseViewModel> extends Fragment {
+public abstract class BaseFragment<VB extends ViewDataBinding> extends Fragment {
 
     protected BaseTitleLayoutBinding mTitleBinding;
-    protected DB mViewBindings;
-    protected VM mVm;
+    protected VB mViewBindings;
 
     @Nullable
     @Override
@@ -53,16 +52,18 @@ public abstract class BaseFragment<DB extends ViewDataBinding, VM extends BaseVi
         mViewBindings = DataBindingUtil.inflate(inflater, getLayoutId(), container, false);
         linearLayout.addView(mViewBindings.getRoot());
 
+        initDataBindings();
+
         if (needEventBus())
             EventBus.getDefault().register(this);
-
-        mVm = getVM();
 
         initIntentData();
         initTitle();
         initView();
         return linearLayout;
     }
+
+    protected abstract void initDataBindings();
 
     private void initTitle() {
         mTitleBinding.titleCenter.setText(TextUtils.isEmpty(getTitleCenter()) ? "" : getTitleCenter());
@@ -78,8 +79,6 @@ public abstract class BaseFragment<DB extends ViewDataBinding, VM extends BaseVi
     protected void initView() {
 
     }
-
-    protected abstract VM getVM();
 
     protected boolean needTitle() {
         return true;

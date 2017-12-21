@@ -21,7 +21,7 @@ public class ProgressResponseBody extends ResponseBody {
 
     public interface ProgressListener {
         void onPreExecute(long contentLength);
-        void update(long totalBytes, boolean done);
+        void update(long totalBytes, long contentLength, boolean done);
     }
 
     private final ResponseBody responseBody;
@@ -64,7 +64,7 @@ public class ProgressResponseBody extends ResponseBody {
                 // read() returns the number of bytes read, or -1 if this source is exhausted.
                 totalBytes += bytesRead != -1 ? bytesRead : 0;
                 if (null != progressListener) {
-                    progressListener.update(totalBytes, bytesRead == -1);
+                    progressListener.update(totalBytes, contentLength(), bytesRead == -1);
                 }
                 return bytesRead;
             }

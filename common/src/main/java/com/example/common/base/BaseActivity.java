@@ -59,7 +59,6 @@ public abstract class BaseActivity<T extends Fragment> extends RxAppCompatActivi
         mFragment = bindingFragments();
         checkFragmentNull();
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, mFragment).commit();
-        component();
     }
 
     @Override
@@ -90,11 +89,6 @@ public abstract class BaseActivity<T extends Fragment> extends RxAppCompatActivi
         if (mFragment == null) throw new NullPointerException(
                 getClass().getSimpleName() + " mFragment not set!");
     }
-
-    /**
-     * 将dagger2的注入从fragment提前到Activity,
-     */
-    protected abstract void component();
 
     /**
      * 绑定fragment到Activity.

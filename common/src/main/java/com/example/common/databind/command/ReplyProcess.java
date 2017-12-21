@@ -34,6 +34,6 @@ public class ReplyProcess {
     }
 
     private void checkCommandNull(){
-        if(mCommand == null) throw new NullPointerException("Command must not be null");
+        if(mCommand == null) throw new NullPointerException("Command can not be null");
     }
 }

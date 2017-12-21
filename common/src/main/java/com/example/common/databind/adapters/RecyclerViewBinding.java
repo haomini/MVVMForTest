@@ -3,8 +3,6 @@ package com.example.common.databind.adapters;
 import android.databinding.BindingAdapter;
 import android.support.v7.widget.RecyclerView;
 
-import com.zhy.adapter.recyclerview.wrapper.HeaderAndFooterWrapper;
-
 /**
  * @Describe
  * @Author zhouhao
@@ -15,7 +13,7 @@ import com.zhy.adapter.recyclerview.wrapper.HeaderAndFooterWrapper;
 public class RecyclerViewBinding {
 
     @BindingAdapter("adapter")
-    public static void setAdapter(RecyclerView recycler, HeaderAndFooterWrapper adapter) {
+    public static void setAdapter(RecyclerView recycler, RecyclerView.Adapter adapter) {
         recycler.setAdapter(adapter);
     }
 }

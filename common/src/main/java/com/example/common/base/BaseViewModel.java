@@ -2,6 +2,8 @@ package com.example.common.base;
 
 import android.content.Context;
 
+import retrofit2.Retrofit;
+
 /**
  * @Describe
  * @Author zhouhao
@@ -9,7 +11,9 @@ import android.content.Context;
  * @Contact 605626708@qq.com
  */
 
-public abstract class BaseViewModel {
+public class BaseViewModel {
+
+    public Retrofit mRetrofit;
 
     protected Context mContext;
 

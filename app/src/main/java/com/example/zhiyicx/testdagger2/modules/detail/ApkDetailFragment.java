@@ -14,20 +14,23 @@ import com.example.zhiyicx.testdagger2.databinding.ApkDetailLayoutBinding;
  * @Contact 605626708@qq.com
  */
 
-public class ApkDetailFragment extends BaseFragment<ApkDetailLayoutBinding, ApkDetailViewModel> {
+public class ApkDetailFragment extends BaseFragment<ApkDetailLayoutBinding> {
 
     private ApkBean mApkBean;
 
-    @Override
-    protected ApkDetailViewModel getVM() {
+    protected ApkDetailViewModel initViewModel() {
         return new ApkDetailViewModel(getContext(), mApkBean);
+    }
+
+    @Override
+    protected void initDataBindings() {
+        mViewBindings.setApkVM(initViewModel());
     }
 
     @Override
     protected void initIntentData() {
         super.initIntentData();
         mApkBean = (ApkBean) getActivity().getIntent().getSerializableExtra("bean");
-        mViewBindings.setApkVM(getVM());
     }
 
     @Override

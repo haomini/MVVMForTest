@@ -96,13 +96,21 @@ dependencies {
     api 'com.zhy:base-rvadapter:3.0.3'
 
     // smartRefreshLayout
-    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
-    api 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'//没有使用特殊Header，可以不加这行
+    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-1'
+    api 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.4-1'//没有使用特殊Header，可以不加这行
 
     api 'org.greenrobot:eventbus:3.1.1'
 
     // 下载库
-    compile 'com.tamic.novate:novate:1.5.2.3'
+    api 'com.tamic.novate:novate:1.5.2.3'
+
+    // Using JCenter
+    api 'eu.davidea:flexible-adapter:5.0.0-rc3'
+    api 'eu.davidea:flexible-adapter-livedata:1.0.0-b1'
+    api 'eu.davidea:flexible-adapter-databinding:1.0.0-b2'
+
+    // Using MavenSnapshots repository for continuous updates from my development
+    api 'eu.davidea:flexible-adapter:5.0.0-SNAPSHOT'
 }
 
 // 控制support组下包的版本一致

@@ -10,10 +10,6 @@ import com.example.common.base.BaseActivity;
  */
 
 public class ApkDetailActivity extends BaseActivity<ApkDetailFragment> {
-    @Override
-    protected void component() {
-
-    }
 
     @Override
     protected ApkDetailFragment bindingFragments() {

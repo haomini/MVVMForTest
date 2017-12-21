@@ -13,10 +13,10 @@ import dagger.Provides;
  */
 
 @Module
-public class AppModule {
+public class BaseModule {
     private static BaseApplication mBaseApplication;
 
-    public AppModule(BaseApplication baseApplication) {
+    public BaseModule(BaseApplication baseApplication) {
         mBaseApplication = baseApplication;
     }
 

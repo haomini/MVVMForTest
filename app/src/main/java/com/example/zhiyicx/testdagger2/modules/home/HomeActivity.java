@@ -12,11 +12,6 @@ import com.example.common.base.BaseActivity;
 public class HomeActivity extends BaseActivity<HomeFragment> {
 
     @Override
-    protected void component() {
-
-    }
-
-    @Override
     protected HomeFragment bindingFragments() {
         return new HomeFragment();
     }

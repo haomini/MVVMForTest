@@ -3,25 +3,26 @@ package com.example.zhiyicx.testdagger2.modules.home;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.common.app.BaseApplication;
 import com.example.common.base.BaseListViewModel;
 import com.example.common.base.BaseObserver;
 import com.example.common.bean.BaseBean;
-import com.example.common.dagger2.module.HttpModule;
 import com.example.common.databind.command.i.ICommand;
 import com.example.common.util.DeviceUtils;
 import com.example.common.widget.EmptyLayout;
 import com.example.zhiyicx.testdagger2.R;
+import com.example.zhiyicx.testdagger2.app.AppApplication;
 import com.example.zhiyicx.testdagger2.bean.ApkBean;
 import com.example.zhiyicx.testdagger2.modules.detail.ApkDetailActivity;
+import com.example.zhiyicx.testdagger2.remote.ClientManager;
 import com.example.zhiyicx.testdagger2.remote.HomeClient;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -35,11 +36,21 @@ import io.reactivex.schedulers.Schedulers;
 
 public class HomeViewModel extends BaseListViewModel<ApkBean> {
 
+    @Inject
+    ClientManager mClientManager;
+
     private HomeClient mHomeClient;
 
-    public HomeViewModel(Context context) {
+    HomeViewModel(Context context) {
         super(context);
-        mHomeClient = HttpModule.provideRetrofit().create(HomeClient.class);
+
+        DaggerHomeComp
+                .builder()
+                .appComp(AppApplication.getAppComp())
+                .build()
+                .injectMembers(this);
+
+        mHomeClient = mClientManager.provideHomeClient();
     }
 
     @Override
@@ -101,13 +112,9 @@ public class HomeViewModel extends BaseListViewModel<ApkBean> {
         return new CommonAdapter<ApkBean>(mContext, R.layout.home_item_layout, mListDatas) {
             @Override
             protected void convert(ViewHolder holder, ApkBean apkBean, int position) {
-                TextView opt = holder.getView(R.id.opt);
-
                 holder.setText(R.id.apk_name, apkBean.getName());
                 holder.setText(R.id.apk_desc, apkBean.getIntroduction());
                 holder.setText(R.id.apk_update, "更新时间: " + apkBean.getUpload_time());
-
-//                opt.setOnClickListener(v -> Toast.makeText(mContext, "下载", Toast.LENGTH_SHORT).show());
 
                 holder.getConvertView().setOnClickListener(view ->
                         mContext.startActivity(new Intent(mContext, ApkDetailActivity.class).putExtra("bean", apkBean)));
