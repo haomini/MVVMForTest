@@ -1,5 +1,6 @@
 package com.example.zhiyicx.testdagger2.modules.home;
 
+import android.databinding.ViewDataBinding;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.example.common.base.BaseListFragment;
@@ -28,6 +29,11 @@ public class HomeFragment extends BaseListFragment<ApkBean> {
     @Override
     protected void initView() {
         mListLayoutBinding.recycler.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
+    @Override
+    protected ViewDataBinding getVM() {
+        return null;
     }
 
     @Override

@@ -70,6 +70,12 @@ public abstract class BaseFragment<VB extends ViewDataBinding> extends Fragment 
         mTitleBinding.titleLeftImg.setVisibility(needLeftIcon() ? View.VISIBLE : View.GONE);
         mTitleBinding.titleLeftText.setText(TextUtils.isEmpty(getTitleLeft()) ? "" : getTitleLeft());
         mTitleBinding.titleLeft.setOnClickListener(getLeftListener());
+        mTitleBinding.titleRight.setBackgroundResource(getRightImg());
+        mTitleBinding.titleRight1.setBackgroundResource(getRight1Img());
+        mTitleBinding.titleRight1.setOnClickListener(getRight1Listener());
+        mTitleBinding.titleRight.setOnClickListener(getRightListener());
+        mTitleBinding.titleRight1.setVisibility(needRight1Icon() ? View.VISIBLE : View.GONE);
+        mTitleBinding.titleRight.setVisibility(needRightIcon() ? View.VISIBLE : View.GONE);
     }
 
     protected void initIntentData() {
@@ -79,6 +85,16 @@ public abstract class BaseFragment<VB extends ViewDataBinding> extends Fragment 
     protected void initView() {
 
     }
+    protected boolean needRight1Icon() {
+        return false;
+    };
+
+    protected boolean needRightIcon() {
+        return true;
+    }
+    protected abstract VB getVM();
+
+
 
     protected boolean needTitle() {
         return true;
@@ -113,8 +129,22 @@ public abstract class BaseFragment<VB extends ViewDataBinding> extends Fragment 
 
     @LayoutRes
     protected abstract int getLayoutId();
+    public int getRight1Img() {
+        return 0;
+    }
 
+    public int getRightImg() {
+        return 0;
+    }
     protected boolean needEventBus() {
         return false;
+    }
+
+    public View.OnClickListener getRight1Listener() {
+        return null;
+    }
+
+    public View.OnClickListener getRightListener() {
+        return null;
     }
 }

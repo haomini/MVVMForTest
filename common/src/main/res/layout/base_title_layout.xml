@@ -5,7 +5,6 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/gray"
-        android:orientation="horizontal"
         android:paddingBottom="4dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
@@ -23,38 +22,46 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:src="@mipmap/record_back"
+                android:layout_marginEnd="4dp"
                 android:layout_marginRight="4dp"
-                android:layout_marginEnd="4dp"/>
+                android:src="@mipmap/record_back" />
 
             <TextView
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                android:text="系统应用"
                 android:id="@+id/title_left_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical" />
+                android:layout_gravity="center_vertical"
+                android:text="系统应用"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
         <TextView
-            android:textColor="@color/white"
             android:id="@+id/title_center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="标题title"
+            android:textColor="@color/white"
             android:textSize="16sp" />
 
         <ImageView
-            android:visibility="gone"
+            android:id="@+id/title_right_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/title_right"
+            android:layout_marginRight="10dp" />
+
+        <ImageView
             android:id="@+id/title_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/ic_launcher_round" />
+            android:layout_marginRight="20dp"
+            android:layout_centerVertical="true" />
+
 
     </RelativeLayout>
 </layout>

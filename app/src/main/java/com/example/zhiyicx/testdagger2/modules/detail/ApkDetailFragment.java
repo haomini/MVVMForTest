@@ -34,6 +34,11 @@ public class ApkDetailFragment extends BaseFragment<ApkDetailLayoutBinding> {
     }
 
     @Override
+    protected ApkDetailLayoutBinding getVM() {
+        return null;
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.apk_detail_layout;
     }
