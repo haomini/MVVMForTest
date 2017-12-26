@@ -26,10 +26,10 @@ public abstract class BaseObserver<D extends Object, T extends BaseBean<D>> impl
 
     @Override
     public void onNext(T t) {
-        if (t.getSatus() == DEFAULT_SUCCESS) {
+        if (t.getStatus() == DEFAULT_SUCCESS) {
             onSuccess(t.getMsg(), t.getData());
         } else {
-            onFailed(t.getSatus(), t.getMsg());
+            onFailed(t.getStatus(), t.getMsg());
         }
     }
 

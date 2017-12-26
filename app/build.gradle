@@ -6,7 +6,6 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'org.greenrobot.greendao' // apply plugin
 
-
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -42,4 +41,6 @@ dependencies {
     // annotationProcessor for dagger2
     annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.11'
+    androidTestCompile 'junit:junit:4.12'
+
 }

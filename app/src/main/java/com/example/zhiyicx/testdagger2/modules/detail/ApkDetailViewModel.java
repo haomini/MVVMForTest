@@ -1,9 +1,11 @@
 package com.example.zhiyicx.testdagger2.modules.detail;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.example.common.base.BaseViewModel;
 import com.example.zhiyicx.testdagger2.bean.ApkBean;
+import com.example.zhiyicx.testdagger2.service.DownloadService;
 
 /**
  * @Describe
@@ -16,12 +18,13 @@ public class ApkDetailViewModel extends BaseViewModel {
 
     public ApkBean mApkBean;
 
-    public ApkDetailViewModel(Context context, ApkBean apkBean) {
+    public ApkDetailViewModel(Context context) {
         super(context);
-        this.mApkBean = apkBean;
     }
 
     public void onInstallClicked() {
-
+        mContext.startService(new Intent(mContext, DownloadService.class)
+                .putExtra(DownloadService.BEAN, mApkBean)
+                .putExtra(DownloadService.LOAD, true));
     }
 }

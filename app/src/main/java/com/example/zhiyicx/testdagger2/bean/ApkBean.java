@@ -43,9 +43,10 @@ public class ApkBean implements Serializable{
     private String developer;
 
     private long breakPosition;
+    private long contentLength;
 
-    @Generated(hash = 926026396)
-    public ApkBean(int id, String mode, String name, String Introduction, String description, String download_url, String version, String upload_time, String developer, long breakPosition) {
+    @Generated(hash = 2094652060)
+    public ApkBean(int id, String mode, String name, String Introduction, String description, String download_url, String version, String upload_time, String developer, long breakPosition, long contentLength) {
         this.id = id;
         this.mode = mode;
         this.name = name;
@@ -56,6 +57,7 @@ public class ApkBean implements Serializable{
         this.upload_time = upload_time;
         this.developer = developer;
         this.breakPosition = breakPosition;
+        this.contentLength = contentLength;
     }
 
     @Generated(hash = 2129966906)
@@ -140,5 +142,13 @@ public class ApkBean implements Serializable{
 
     public void setBreakPosition(long breakPosition) {
         this.breakPosition = breakPosition;
+    }
+
+    public long getContentLength() {
+        return this.contentLength;
+    }
+
+    public void setContentLength(long contentLength) {
+        this.contentLength = contentLength;
     }
 }

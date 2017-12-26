@@ -16,10 +16,10 @@ import com.example.zhiyicx.testdagger2.databinding.ApkDetailLayoutBinding;
 
 public class ApkDetailFragment extends BaseFragment<ApkDetailLayoutBinding> {
 
-    private ApkBean mApkBean;
+    private ApkDetailViewModel mApkDetailViewModel;
 
     protected ApkDetailViewModel initViewModel() {
-        return new ApkDetailViewModel(getContext(), mApkBean);
+        return mApkDetailViewModel = new ApkDetailViewModel(getContext());
     }
 
     @Override
@@ -30,7 +30,7 @@ public class ApkDetailFragment extends BaseFragment<ApkDetailLayoutBinding> {
     @Override
     protected void initIntentData() {
         super.initIntentData();
-        mApkBean = (ApkBean) getActivity().getIntent().getSerializableExtra("bean");
+        mApkDetailViewModel.mApkBean = (ApkBean) getActivity().getIntent().getSerializableExtra("bean");
     }
 
     @Override
@@ -45,7 +45,7 @@ public class ApkDetailFragment extends BaseFragment<ApkDetailLayoutBinding> {
 
     @Override
     protected String getTitleLeft() {
-        return mApkBean.getName();
+        return mApkDetailViewModel.mApkBean.getName();
     }
 
     @Override

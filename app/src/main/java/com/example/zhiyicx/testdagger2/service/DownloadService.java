@@ -1,17 +1,23 @@
 package com.example.zhiyicx.testdagger2.service;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
+import android.os.Environment;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NotificationCompat;
 
-import com.example.common.util.download.ProgressResponseBody;
 import com.example.zhiyicx.testdagger2.DownloadUtils;
+import com.example.zhiyicx.testdagger2.R;
 import com.example.zhiyicx.testdagger2.app.AppApplication;
 import com.example.zhiyicx.testdagger2.bean.ApkBean;
 import com.example.zhiyicx.testdagger2.bean.ApkBeanDao;
 import com.example.zhiyicx.testdagger2.remote.SqlManager;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -23,10 +29,13 @@ import javax.inject.Inject;
  * @Contact 605626708@qq.com
  */
 
-public class DownloadService extends Service implements ProgressResponseBody.ProgressListener {
+public class DownloadService extends Service implements /*ProgressResponseBody.ProgressListener, */DownloadUtils.DownloadProgreser {
 
     // 文件放置地址.
     public static final String FILE_PATH = "/haomini_test_files/";
+
+    // 下载/暂停
+    public static final String LOAD = "load";
 
     // 实体对象
     public static final String BEAN = "bean";
@@ -35,6 +44,10 @@ public class DownloadService extends Service implements ProgressResponseBody.Pro
     SqlManager mSqlManager;
 
     ApkBeanDao mApkBeanDao;
+    private NotificationManager notificationManager;
+    private NotificationCompat.Builder notification;
+    private long startPos;
+    private int progress;
 
     @Override
     public void onCreate() {
@@ -47,21 +60,64 @@ public class DownloadService extends Service implements ProgressResponseBody.Pro
                 .injectMembers(this);
 
         mApkBeanDao = mSqlManager.provideApkBeanDao();
+
+        notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notification = new NotificationCompat.Builder(this);
+        notification.setSmallIcon(R.mipmap.ic_launcher_round)
+                .setAutoCancel(false);
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        boolean load = intent.getBooleanExtra(LOAD, false);
         ApkBean bean = (ApkBean) intent.getSerializableExtra(BEAN);
-        List<ApkBean> list = mApkBeanDao.queryBuilder()
-                .where(ApkBeanDao.Properties.Id.eq(bean.getId()))
-                .list();
-        if(list.size() == 1){
-            long lastBreakPosition = list.get(0).getBreakPosition();
-            DownloadUtils.nioDownload(bean.getDownload_url(), lastBreakPosition, this);
-        }
+        bean.setDownload_url(DownloadUtils.urlStr);
+        if (load) {
+            List<ApkBean> list = mApkBeanDao.queryBuilder()
+                    .where(ApkBeanDao.Properties.Id.eq(bean.getId()))
+                    .list();
 
-        if(list.size() == 0){
-            mApkBeanDao.insert(bean);
+            notification.setContentTitle(bean.getName())
+                    .setContentText("连接中...")
+                    .setContentIntent(PendingIntent.getService(this, 0,
+                            new Intent(this, DownloadService.class)
+                                    .putExtra(BEAN, bean)
+                                    .putExtra(LOAD, false),
+                            PendingIntent.FLAG_UPDATE_CURRENT));
+            notificationManager.notify(101, notification.build());
+
+            notification.setProgress(100, progress, false);
+            notificationManager.notify(101, notification.setContentText("开始下载...").build());
+            DownloadUtils.load = true;
+
+            long breakPos = list.size() == 1 ? list.get(0).getBreakPosition() : 0;
+            if (!new File(Environment.getExternalStorageDirectory() + FILE_PATH + bean.getName() + ".apk").exists()) {
+                breakPos = 0;
+            }
+            bean.setBreakPosition(breakPos);
+            new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        DownloadUtils.classicDownload(bean, bean.getBreakPosition(), DownloadService.this);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }.start();
+
+            if (list.size() == 0) {
+                mApkBeanDao.insert(bean);
+            }
+        } else {
+            DownloadUtils.load = false;
+            notification.setContentIntent(PendingIntent.getService(this, 0,
+                    new Intent(this, DownloadService.class)
+                            .putExtra(BEAN, bean)
+                            .putExtra(LOAD, true),
+                    PendingIntent.FLAG_UPDATE_CURRENT))
+                    .setContentText("已暂停,点击继续...");
+            notificationManager.notify(101, notification.build());
         }
         return super.onStartCommand(intent, flags, startId);
     }
@@ -77,14 +133,25 @@ public class DownloadService extends Service implements ProgressResponseBody.Pro
         return null;
     }
 
-    // 仅用作更新进度条
     @Override
-    public void onPreExecute(long contentLength) {
-
+    public void update(ApkBean apkBean, long totalPos, long contentLength, boolean done) {
+        startPos = totalPos;
+        int currentProgress = (int) (totalPos * 100 / contentLength);
+        if (currentProgress == 100 || currentProgress > progress) {
+            progress = currentProgress;
+//                notification.
+            notification.setProgress(100, progress, false);
+            if (progress == 100) {
+                notification.setContentText("下载完成");
+            }
+            notificationManager.notify(101, notification.build());
+        }
     }
 
     @Override
-    public void update(long totalBytes, long contentLength, boolean done) {
-
+    public void pause(ApkBean apkBean, long totalPos, long contentLength) {
+        apkBean.setBreakPosition(totalPos);
+        apkBean.setContentLength(contentLength);
+        mApkBeanDao.insertOrReplace(apkBean);
     }
 }

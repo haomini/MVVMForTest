@@ -14,16 +14,16 @@ public class BaseBean<T> {
      * msg : 恭喜您，找到您的机型所对应的资源啦！
      */
 
-    private int satus;
+    private int status;
     private String msg;
     private T data;
 
-    public int getSatus() {
-        return satus;
+    public int getStatus() {
+        return status;
     }
 
-    public void setSatus(int satus) {
-        this.satus = satus;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public String getMsg() {
