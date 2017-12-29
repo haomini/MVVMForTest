@@ -60,6 +60,10 @@ public class ProgressResponseBody extends ResponseBody {
             long totalBytes = 0L;
             @Override
             public long read(Buffer sink, long byteCount) throws IOException {
+
+                // 下载流
+                sink.inputStream();
+
                 long bytesRead = super.read(sink, byteCount);
                 // read() returns the number of bytes read, or -1 if this source is exhausted.
                 totalBytes += bytesRead != -1 ? bytesRead : 0;

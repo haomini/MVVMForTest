@@ -41,6 +41,8 @@ dependencies {
     // annotationProcessor for dagger2
     annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.11'
-    androidTestCompile 'junit:junit:4.12'
 
+    testApi 'junit:junit:4.12'
+    androidTestApi 'com.android.support.test:runner:1.0.1'
+    androidTestApi 'com.android.support.test.espresso:espresso-core:3.0.1'
 }

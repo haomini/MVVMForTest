@@ -29,7 +29,7 @@ import javax.inject.Inject;
  * @Contact 605626708@qq.com
  */
 
-public class DownloadService extends Service implements /*ProgressResponseBody.ProgressListener, */DownloadUtils.DownloadProgreser {
+public class DownloadService extends Service implements DownloadUtils.DownloadProgreser {
 
     // 文件放置地址.
     public static final String FILE_PATH = "/haomini_test_files/";

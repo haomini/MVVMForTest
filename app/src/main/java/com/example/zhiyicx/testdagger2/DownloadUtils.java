@@ -2,7 +2,6 @@ package com.example.zhiyicx.testdagger2;
 
 import android.os.Environment;
 
-import com.example.common.util.download.ProgressResponseBody;
 import com.example.zhiyicx.testdagger2.bean.ApkBean;
 
 import java.io.File;
@@ -13,17 +12,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
-
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * @Describe
@@ -46,44 +34,6 @@ public class DownloadUtils {
         } else if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
             save(urlConnection.getInputStream(), apkBean, 0, urlConnection.getContentLength(), listener);
         }
-    }
-
-    public static void nioDownload(String url, long startPos, ProgressResponseBody.ProgressListener progressListener) {
-        Interceptor interceptor = chain -> {
-            Response originalResponse = chain.proceed(chain.request());
-            return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-        };
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .addNetworkInterceptor(interceptor)
-                .build();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://sns.hbbclub.com/")
-                .client(okHttpClient)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .build();
-
-        retrofit.create(DownloadClient.class).download(url, "bytes=" + startPos + "-")
-                .enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
-                        if (response.code() == HttpURLConnection.HTTP_OK) {
-                            // 重新下载
-                        } else if (response.code() == HttpURLConnection.HTTP_PARTIAL) {
-                            // 继续下载
-                        }
-//                        save(response.body().byteStream(), startPos, response.body().contentLength());
-                    }
-
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        t.printStackTrace();
-                    }
-                });
     }
 
     public static File createOrRecreateFile(String file) throws IOException {

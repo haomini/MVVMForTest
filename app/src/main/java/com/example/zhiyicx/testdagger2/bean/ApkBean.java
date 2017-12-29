@@ -151,4 +151,21 @@ public class ApkBean implements Serializable{
     public void setContentLength(long contentLength) {
         this.contentLength = contentLength;
     }
+
+    @Override
+    public String toString() {
+        return "ApkBean{" +
+                "id=" + id +
+                ", mode='" + mode + '\'' +
+                ", name='" + name + '\'' +
+                ", Introduction='" + Introduction + '\'' +
+                ", description='" + description + '\'' +
+                ", download_url='" + download_url + '\'' +
+                ", version='" + version + '\'' +
+                ", upload_time='" + upload_time + '\'' +
+                ", developer='" + developer + '\'' +
+                ", breakPosition=" + breakPosition +
+                ", contentLength=" + contentLength +
+                '}';
+    }
 }
