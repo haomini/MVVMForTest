@@ -39,15 +39,11 @@ dependencies {
 
     api "com.android.support:appcompat-v7:$rootProject.ext.android_supportVersion"
     api "com.android.support:design:$rootProject.ext.android_supportVersion"
-    api 'com.android.support:multidex:1.0.2'
+//    api 'com.android.support:multidex:1.0.2'
 
     testApi 'junit:junit:4.12'
     androidTestApi 'com.android.support.test:runner:1.0.1'
     androidTestApi 'com.android.support.test.espresso:espresso-core:3.0.1'
-
-    // kotlin-anko
-    api 'org.jetbrains.anko:anko:0.10.2'
-    api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     // constraint-layout
     api 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -97,20 +93,9 @@ dependencies {
 
     // smartRefreshLayout
     api 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-7'
-    api 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.4-7'//没有使用特殊Header，可以不加这行
+    // api 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.4-7'//没有使用特殊Header，可以不加这行
 
     api 'org.greenrobot:eventbus:3.1.1'
-
-    // 下载库
-    api 'com.tamic.novate:novate:1.5.2.3'
-
-    // Using JCenter
-    api 'eu.davidea:flexible-adapter:5.0.0-rc3'
-    api 'eu.davidea:flexible-adapter-livedata:1.0.0-b1'
-    api 'eu.davidea:flexible-adapter-databinding:1.0.0-b2'
-
-    // Using MavenSnapshots repository for continuous updates from my development
-    api 'eu.davidea:flexible-adapter:5.0.0-SNAPSHOT'
 }
 
 // 控制support组下包的版本一致

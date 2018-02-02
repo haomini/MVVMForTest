@@ -1,6 +1,6 @@
 package com.example.common.app;
 
-import android.support.multidex.MultiDexApplication;
+import android.app.Application;
 
 import com.example.common.dagger2.component.BaseComp;
 import com.example.common.dagger2.component.DaggerBaseComp;
@@ -17,7 +17,7 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader;
  * @Contact 605626708@qq.com
  */
 
-public class BaseApplication extends MultiDexApplication {
+public class BaseApplication extends Application {
 
     //static 代码段可以防止内存泄露
     static {

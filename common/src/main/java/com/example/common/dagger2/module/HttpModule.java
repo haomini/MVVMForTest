@@ -42,27 +42,4 @@ public class HttpModule {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
-
-//    @NetModel("download")
-//    @Singleton
-//    @Provides
-//    public static Retrofit provideDownloadRetrofit(ProgressResponseBody.ProgressListener progressListener){
-//        Interceptor interceptor = chain -> {
-//            Response originalResponse = chain.proceed(chain.request());
-//            return originalResponse.newBuilder()
-//                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-//                    .build();
-//        };
-//        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-//                .addNetworkInterceptor(interceptor)
-//                .build();
-//
-//        return new Retrofit.Builder()
-//                .baseUrl("http://systemapp.laoshi888.com/")
-//                .client(okHttpClient)
-//                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .addConverterFactory(ScalarsConverterFactory.create())
-//                .build();
-//    }
 }
