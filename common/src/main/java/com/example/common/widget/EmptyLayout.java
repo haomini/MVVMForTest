@@ -9,7 +9,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.example.common.R;
@@ -55,8 +54,7 @@ public class EmptyLayout extends FrameLayout {
     }
 
     private void init() {
-        mEmptyLayoutBinding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.empty_layout, this, false);
-        addView(mEmptyLayoutBinding.getRoot(), new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        mEmptyLayoutBinding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.empty_layout, this, true);
         mEmptyLayoutBinding.setElVm(this);
         setOnClickListener(v -> {
             if ((state.get() == NODATA || state.get() == ERROR) && onEmptyClicked != null)

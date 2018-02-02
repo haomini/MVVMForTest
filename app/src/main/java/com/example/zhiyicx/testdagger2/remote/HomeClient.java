@@ -16,7 +16,6 @@ import retrofit2.http.POST;
  * @Date 2017/12/9
  * @Contact 605626708@qq.com
  */
-
 public interface HomeClient {
 
     @POST("System/Resources/resources")

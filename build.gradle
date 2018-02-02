@@ -28,5 +28,5 @@ task clean(type: Delete) {
 }
 
 ext{
-    android_supportVersion = '26.1.0'
+    android_supportVersion = '27.0.2'
 }

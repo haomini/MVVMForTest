@@ -14,7 +14,7 @@ import io.reactivex.disposables.Disposable;
  * @Contact 605626708@qq.com
  */
 
-public abstract class BaseObserver<D extends Object, T extends BaseBean<D>> implements Observer<T> {
+public abstract class BaseObserver<D, T extends BaseBean<D>> implements Observer<T> {
 
     public static final int DEFAULT_ERROR = 1009;
     public static final int DEFAULT_SUCCESS = 2;

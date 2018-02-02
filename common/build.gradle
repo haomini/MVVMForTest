@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     buildToolsVersion "26.0.2"
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 22
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
 
@@ -39,6 +39,7 @@ dependencies {
 
     api "com.android.support:appcompat-v7:$rootProject.ext.android_supportVersion"
     api "com.android.support:design:$rootProject.ext.android_supportVersion"
+    api 'com.android.support:multidex:1.0.2'
 
     testApi 'junit:junit:4.12'
     androidTestApi 'com.android.support.test:runner:1.0.1'
@@ -95,8 +96,8 @@ dependencies {
     api 'com.zhy:base-rvadapter:3.0.3'
 
     // smartRefreshLayout
-    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-1'
-    api 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.4-1'//没有使用特殊Header，可以不加这行
+    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-7'
+    api 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.4-7'//没有使用特殊Header，可以不加这行
 
     api 'org.greenrobot:eventbus:3.1.1'
 

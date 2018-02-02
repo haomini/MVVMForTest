@@ -5,6 +5,11 @@ import com.example.zhiyicx.testdagger2.remote.HomeClient;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.regex.Pattern;
+
+import rx.Observable;
+
 /**
  * @Describe
  * @Author zhouhao
@@ -21,6 +26,23 @@ public class DownloadUtilsTest {
 
     @Test
     public void nioDownload() throws Exception {
+    }
+
+    @Test
+    public void test2() {
+        Observable.from(Arrays.asList("1", "2", "3"))
+                .doOnNext(System.out::println)
+                .map(s -> s + " - 5")
+                .doOnNext(s -> System.out.println(s + "1"))
+                .doOnNext(s -> System.out.println(s + "2"))
+                .doOnNext(s -> System.out.println(s + "3"))
+                .subscribe(System.out::println);
+    }
+
+    @Test
+    public void test3(){
+        Pattern pattern = Pattern.compile("^[.]*$");
+        System.out.print(pattern.matcher("ma").find());
     }
 
 }
