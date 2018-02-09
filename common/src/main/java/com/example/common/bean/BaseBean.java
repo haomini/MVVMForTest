@@ -18,6 +18,11 @@ public class BaseBean<T> {
     private String msg;
     private T data;
 
+    public BaseBean(int status, String msg) {
+        this.status = status;
+        this.msg = msg;
+    }
+
     public int getStatus() {
         return status;
     }

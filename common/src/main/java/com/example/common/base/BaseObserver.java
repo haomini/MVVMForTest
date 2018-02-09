@@ -14,7 +14,7 @@ import io.reactivex.disposables.Disposable;
  * @Contact 605626708@qq.com
  */
 
-public abstract class BaseObserver<D, T extends BaseBean<D>> implements Observer<T> {
+public abstract class BaseObserver<D> implements Observer<BaseBean<D>> {
 
     public static final int DEFAULT_ERROR = 1009;
     public static final int DEFAULT_SUCCESS = 2;
@@ -25,11 +25,11 @@ public abstract class BaseObserver<D, T extends BaseBean<D>> implements Observer
     }
 
     @Override
-    public void onNext(T t) {
-        if (t.getStatus() == DEFAULT_SUCCESS) {
-            onSuccess(t.getMsg(), t.getData());
+    public void onNext(BaseBean<D> dBaseBean) {
+        if (dBaseBean.getStatus() == DEFAULT_SUCCESS) {
+            onSuccess(dBaseBean.getMsg(), dBaseBean.getData());
         } else {
-            onFailed(t.getStatus(), t.getMsg());
+            onFailed(dBaseBean.getStatus(), dBaseBean.getMsg());
         }
     }
 

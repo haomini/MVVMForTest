@@ -1,6 +1,7 @@
 package com.example.common.base;
 
 import com.example.common.R;
+import com.example.common.bean.BaseBean;
 import com.example.common.databinding.BaseListLayoutBinding;
 
 /**
@@ -10,9 +11,7 @@ import com.example.common.databinding.BaseListLayoutBinding;
  * @Contact 605626708@qq.com
  */
 
-public abstract class BaseListFragment<T extends Object> extends BaseFragment {
-
-    protected BaseListLayoutBinding mListLayoutBinding;
+public abstract class BaseListFragment<T extends BaseBean> extends BaseFragment<BaseListLayoutBinding> {
 
     @Override
     protected int getLayoutId() {
@@ -26,8 +25,7 @@ public abstract class BaseListFragment<T extends Object> extends BaseFragment {
 
     @Override
     protected void initDataBindings() {
-        mListLayoutBinding = (BaseListLayoutBinding) mViewBindings;
-        mListLayoutBinding.setListVM(getListViewModel());
+        mViewBindings.setListVM(getListViewModel());
     }
 
     protected abstract BaseListViewModel<T> getListViewModel();
