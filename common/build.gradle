@@ -76,6 +76,9 @@ dependencies {
     // rx-lifecycle
     api 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.1'
 
+    // rx-permissions
+    api 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
+
     // retrofit 网络框架
     api 'com.squareup.retrofit2:retrofit:2.3.0'
     api 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'

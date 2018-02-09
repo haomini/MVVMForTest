@@ -31,6 +31,7 @@ public abstract class BaseActivity<T extends Fragment> extends RxAppCompatActivi
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // 根视图 - decorView下层最顶级视图
         LinearLayout linearLayout = new LinearLayout(this);
         linearLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT));
@@ -38,6 +39,7 @@ public abstract class BaseActivity<T extends Fragment> extends RxAppCompatActivi
 
         setContentView(linearLayout);
 
+        // set transportStatusBar
         if (needTransportStatus()) {
             StatusBarUtils.setStatusBarColor(this, R.color.gray);
             if (needPlaceStatusHolder()) {
@@ -49,8 +51,10 @@ public abstract class BaseActivity<T extends Fragment> extends RxAppCompatActivi
             }
         }
 
+        // add activity to stack.
         ActivityStack.getInstance().addActivity(this);
 
+        // add fragment to activity
         FrameLayout fm = new FrameLayout(this);
         fm.setId(R.id.fragment_container);
         linearLayout.addView(fm, LinearLayout.LayoutParams.MATCH_PARENT,

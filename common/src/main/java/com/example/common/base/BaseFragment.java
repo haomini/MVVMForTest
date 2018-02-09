@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 
 import com.example.common.R;
 import com.example.common.databinding.BaseTitleLayoutBinding;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import org.greenrobot.eventbus.EventBus;
@@ -31,6 +32,8 @@ public abstract class BaseFragment<VB extends ViewDataBinding> extends RxFragmen
     protected BaseTitleLayoutBinding mTitleBinding;
     protected VB mViewBindings;
 
+    protected RxPermissions mRxPermissions;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -41,48 +44,80 @@ public abstract class BaseFragment<VB extends ViewDataBinding> extends RxFragmen
         linearLayout.setBackgroundColor(Color.WHITE);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
 
+        // set title
         if (needTitle()) {
             mTitleBinding = DataBindingUtil.inflate(inflater, R.layout.base_title_layout, container, false);
             linearLayout.addView(mTitleBinding.getRoot());
         }
+
+        // title bottom divider
         if (needDivider()) {
             View divider = new View(getContext());
             divider.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1));
             divider.setBackgroundColor(getResources().getColor(R.color.divider_default_color));
             linearLayout.addView(divider);
         }
+
+        // content View
         mViewBindings = DataBindingUtil.inflate(inflater, getLayoutId(), container, false);
         linearLayout.addView(mViewBindings.getRoot());
 
-        if (needEventBus())
+        // use EventBus
+        if (useEventBus())
             EventBus.getDefault().register(this);
 
+        // use RxPermissions
+        if (usePermissions())
+            mRxPermissions = new RxPermissions(getActivity());
+
         initIntentData();
-        initTitle();
+
+        if (needTitle())
+            initTitle();
+
         initView();
         return linearLayout;
     }
 
-    private void initTitle() {
-        mTitleBinding.titleCenter.setText(TextUtils.isEmpty(getTitleCenter()) ? "" : getTitleCenter());
-    }
-
+    /**
+     * 接收IntentData
+     */
     protected void initIntentData() {
 
     }
 
+    /**
+     * 初始化View
+     */
     protected void initView() {
 
     }
 
+    /**
+     * 初始化Title
+     */
+    private void initTitle() {
+        mTitleBinding.titleCenter.setText(TextUtils.isEmpty(getTitleCenter()) ? "" : getTitleCenter());
+    }
+
+    /**
+     * 使用Title
+     */
     protected boolean needTitle() {
         return true;
     }
 
+    /**
+     * 使用TitleDivider
+     */
     protected boolean needDivider() {
         return true;
     }
 
+    /**
+     * 设置Title名称
+     * @return
+     */
     protected CharSequence getTitleCenter() {
         return null;
     }
@@ -90,16 +125,35 @@ public abstract class BaseFragment<VB extends ViewDataBinding> extends RxFragmen
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (needEventBus())
+        if (useEventBus())
             EventBus.getDefault().unregister(this);
     }
 
+    /**
+     * content View layout id
+     * @return
+     */
     @LayoutRes
     protected abstract int getLayoutId();
 
-    protected boolean needEventBus() {
+    /**
+     * 使用EventBus
+     * @return
+     */
+    protected boolean useEventBus() {
         return false;
     }
 
+    /**
+     * 使用RxPermissions
+     * @return
+     */
+    protected boolean usePermissions() {
+        return false;
+    }
+
+    /**
+     * 初始化ViewModel
+     */
     protected abstract void initDataBindings();
 }
