@@ -46,20 +46,14 @@ public abstract class BaseListViewModel<T> extends BaseViewModel {
         onEmptyClicked = new ReplyProcess(getEmptyCommand());
     }
 
-    // 提供刷新指令 must
-    protected abstract ICommand getRefreshCommand();
-
     // adapter
     protected abstract RecyclerView.Adapter getAdapter();
 
-    // 提供加载指令 well
-    protected ICommand getLoadMoreCommand() {
-        return () -> {
-        };
-    }
+    // 提供刷新指令 must
+    protected abstract ICommand getRefreshCommand();
 
-    protected ICommand getEmptyCommand(){
-        return () -> {
-        };
-    }
+    // 提供加载指令 well
+    protected abstract ICommand getLoadMoreCommand();
+
+    protected abstract ICommand getEmptyCommand();
 }

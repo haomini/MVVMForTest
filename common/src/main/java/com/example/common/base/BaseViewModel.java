@@ -2,8 +2,6 @@ package com.example.common.base;
 
 import android.content.Context;
 
-import retrofit2.Retrofit;
-
 /**
  * @Describe
  * @Author zhouhao
@@ -12,8 +10,6 @@ import retrofit2.Retrofit;
  */
 
 public class BaseViewModel {
-
-    public Retrofit mRetrofit;
 
     protected Context mContext;
 

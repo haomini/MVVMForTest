@@ -16,6 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name="._test._nes.RecyclerActivity">
             <!--<intent-filter>-->
                 <!--<action android:name="android.intent.action.MAIN"/>-->
@@ -23,6 +24,7 @@
                 <!--<category android:name="android.intent.category.LAUNCHER"/>-->
             <!--</intent-filter>-->
         </activity>
+
         <activity android:name="._test._translation_anim.SmallImgActivity">
 
             <!-- <intent-filter> -->
@@ -32,11 +34,10 @@
             <!-- <category android:name="android.intent.category.LAUNCHER"/> -->
             <!-- </intent-filter> -->
         </activity>
-        <activity android:name="._test._translation_anim.BigImgActivity">
-        </activity>
 
-        <service android:name="._test._download_io.DownloadService">
-        </service>
+        <activity android:name="._test._translation_anim.BigImgActivity">
+
+        </activity>
 
         <activity android:name="._test._test_wheel_view.TestWheelActivity">
             <intent-filter>
@@ -45,6 +46,14 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.test_list.TestListActivity">
+
+        </activity>
+
+        <service android:name="._test._download_io.DownloadService">
+
+        </service>
     </application>
 
 </manifest>
