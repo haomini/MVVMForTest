@@ -5,16 +5,11 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.common.base.BaseListViewModel;
 import com.example.common.databind.command.i.ICommand;
-import com.example.zhiyicx.testdagger2.R;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import io.reactivex.Observable;
-import io.reactivex.internal.operators.observable.ObservableInterval;
 
 /**
  * @Describe
@@ -31,7 +26,7 @@ public class TestListViewModel extends BaseListViewModel<String> {
 
     @Override
     protected RecyclerView.Adapter getAdapter() {
-        return new CommonAdapter<String>(mContext, android.R.layout.simple_list_item_1, ) {
+        return new CommonAdapter<String>(mContext, android.R.layout.simple_dropdown_item_1line, gettestList()) {
             @Override
             protected void convert(ViewHolder holder, String o, int position) {
                 holder.setText(android.R.id.text1, o);
@@ -45,6 +40,8 @@ public class TestListViewModel extends BaseListViewModel<String> {
             mListDatas.clear();
             mListDatas.addAll(gettestList());
             mHeaderAndFooterWrapper.notifyDataSetChanged();
+            mSmartRefreshLayoutState.set(0);
+            mEmptyState.set(1);
         };
     }
 
@@ -60,7 +57,7 @@ public class TestListViewModel extends BaseListViewModel<String> {
 
     @Override
     protected ICommand getEmptyCommand() {
-        return null;
+        return getRefreshCommand();
     }
 
     public List<String> gettestList(){

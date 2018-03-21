@@ -76,6 +76,7 @@ public abstract class BaseFragment<VB extends ViewDataBinding> extends RxFragmen
             initTitle();
 
         initView();
+        initDataBindings();
         return linearLayout;
     }
 

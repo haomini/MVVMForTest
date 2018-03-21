@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.daimajia.swipe.SwipeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:id="@+id/swipe">
+
+    <TextView
+        android:id="@+id/delete"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="删除"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="看一看咯"/>
+</com.daimajia.swipe.SwipeLayout>

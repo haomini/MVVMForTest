@@ -10,8 +10,8 @@
         <!--<item name="android:navigationBarColor">@color/white</item>-->
 
         <!--<item name="android:windowTranslucentNavigation">true</item>-->
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:statusBarColor">@color/colorAccent</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
 
         <!-- specify enter and exit transitions -->
         <item name="android:windowEnterTransition">@android:transition/explode</item>

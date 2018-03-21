@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.daimajia.swipe.SwipeLayout;
 import com.example.common.widget.EmptyLayout;
 import com.example.zhiyicx.testdagger2.R;
 import com.example.zhiyicx.testdagger2.databinding.FragmentTestBinding;
@@ -30,6 +32,8 @@ public class RecyclerFragment extends Fragment {
 
     public static final String IS_EMPTY = "EMPTY";
     public boolean isEmpty = false;
+    public RecyclerView.Adapter mAdapter;
+    private List<String> list;
 
     public static RecyclerFragment newInstance(boolean isEmpty) {
         RecyclerFragment fragment = new RecyclerFragment();
@@ -44,39 +48,40 @@ public class RecyclerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         isEmpty = getArguments().getBoolean(IS_EMPTY);
         FragmentTestBinding mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_test, container, false);
-        mBinding.smartRefreshLayout.setEnableRefresh(false);
+//        mBinding.smartRefreshLayout.setEnableRefresh(false);
         mBinding.empty.setState(isEmpty ? EmptyLayout.NODATA : EmptyLayout.HIDE_LAYOUT);
-        mBinding.getRoot().findViewById(R.id.nes).setVisibility(isEmpty ? View.VISIBLE : View.GONE);
+//        mBinding.getRoot().findViewById(R.id.nes).setVisibility(isEmpty ? View.VISIBLE : View.GONE);
         if (!isEmpty) {
-            mBinding.recycler.setAdapter(new CommonAdapter<String>(getContext(),
-                    android.R.layout.simple_spinner_dropdown_item, getTestList()) {
+            mBinding.recycler.setAdapter(mAdapter = new CommonAdapter<String>(getContext(),
+                    R.layout.list_item_swipe, list = getTestList()) {
                 @Override
                 protected void convert(ViewHolder holder, String s, int position) {
-                    ((TextView) holder.getView(android.R.id.text1)).setText(s);
-                    holder.getView(android.R.id.text1).getLayoutParams().height = 400;
+                    ((TextView) holder.getView(R.id.content)).setText(s);
+                    SwipeLayout swipeLayout = holder.getView(R.id.swipe);
                 }
             });
             mBinding.recycler.setLayoutManager(new LinearLayoutManager(getContext()));
         }
+
         return mBinding.getRoot();
     }
 
     public List<String> getTestList() {
         List<String> list = new ArrayList<>();
         list.add("11232");
-//        list.add("12");
-//        list.add("13");
-//        list.add("14");
-//        list.add("15");
-//        list.add("16");
-//        list.add("17");
-//        list.add("17");
-//        list.add("17");
-//        list.add("17");
-//        list.add("17");
-//        list.add("17");
-//        list.add("17");
-//        list.add("17");
+        list.add("12");
+        list.add("13");
+        list.add("14");
+        list.add("15");
+        list.add("16");
+        list.add("17");
+        list.add("17");
+        list.add("17");
+        list.add("17");
+        list.add("17");
+        list.add("17");
+        list.add("17");
+        list.add("17");
         return list;
     }
 }

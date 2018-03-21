@@ -45,4 +45,6 @@ dependencies {
     androidTestApi 'com.android.support.test:runner:1.0.1'
     androidTestApi 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    implementation "com.daimajia.swipelayout:library:1.2.0@aar"
 }

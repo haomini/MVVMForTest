@@ -1,6 +1,7 @@
 package com.example.zhiyicx.testdagger2.ui.test_list;
 
 import com.example.common.base.BaseListFragment;
+import com.example.common.databinding.BaseListLayoutBinding;
 
 /**
  * @Describe
@@ -13,6 +14,6 @@ public class TestListFragment extends BaseListFragment {
 
     @Override
     protected void initDataBindings() {
-
+        ((BaseListLayoutBinding) mViewBindings).setListVM(new TestListViewModel(getContext()));
     }
 }

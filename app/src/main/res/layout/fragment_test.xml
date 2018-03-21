@@ -11,27 +11,39 @@
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/nes"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:fillViewport="true">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
             <com.example.common.widget.EmptyLayout
                 android:id="@+id/empty"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
+
+            <TextView
+
+                android:background="#ff0000"
+                android:layout_width="wrap_content"
+                android:layout_height="400dp"/>
+            </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
 
-        <com.scwang.smartrefresh.layout.SmartRefreshLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/smart_refresh_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:srlEnableOverScrollDrag="false"
-            app:srlEnableRefresh="false">
+        <!--<com.scwang.smartrefresh.layout.SmartRefreshLayout-->
+            <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+            <!--android:id="@+id/smart_refresh_layout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--app:srlEnableOverScrollDrag="false"-->
+            <!--app:srlEnableRefresh="false">-->
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
-        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        <!--</com.scwang.smartrefresh.layout.SmartRefreshLayout>-->
     </LinearLayout>
 </layout>

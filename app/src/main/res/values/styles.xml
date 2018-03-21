@@ -7,4 +7,11 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <style name="Mdialog" parent="android:style/Theme.Dialog">
+        <!--<item name="android:background">@android:color/transparent</item>-->
+        <!--<item name="android:windowBackground">@android:color/transparent</item>-->
+    </style>
+
+    <drawable name="bg">#ff3058ff</drawable>
 </resources>
