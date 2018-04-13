@@ -27,9 +27,6 @@ class TestScrollActivity : AppCompatActivity() {
                 MotionEvent.ACTION_CANCEL -> {
                     Log.e("test_cancel", ": " + event.x + " : "+event.rawX)
                 }
-                MotionEvent.ACTION_OUTSIDE -> {
-                    Log.e("test_outSide", ": " + event.x + " : "+event.rawX)
-                }
             }
             true
         })

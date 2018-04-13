@@ -10,7 +10,6 @@ import android.view.View;
 
 import com.example.zhiyicx.testdagger2.R;
 import com.example.zhiyicx.testdagger2.databinding.ActivityWebLayoutBinding;
-import com.example.zhiyicx.testdagger2.ui.MyDialog;
 
 /**
  * @Describe
@@ -25,7 +24,6 @@ public class RecyclerActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        new MyDialog().show(getSupportFragmentManager(), "first");
         ActivityWebLayoutBinding mbinding = DataBindingUtil.setContentView(this,
                 R.layout.activity_web_layout);
 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.scwang.smartrefresh.layout.SmartRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/smart"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/nes"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:id="@+id/lin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/btn"
+            android:layout_width="match_parent"
+            android:layout_height="10000dp"
+            android:background="@color/colorAccent"/>
+
+        <Button
+            android:id="@+id/view"
+            android:text="@string/app_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>
