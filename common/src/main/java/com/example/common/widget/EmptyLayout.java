@@ -9,7 +9,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.VelocityTracker;
 import android.widget.FrameLayout;
 
 import com.example.common.R;
@@ -61,7 +60,6 @@ public class EmptyLayout extends FrameLayout {
             if ((state.get() == NODATA || state.get() == ERROR) && onEmptyClicked != null)
                 onEmptyClicked.run();
         });
-        VelocityTracker.obtain().clear();
     }
 
     public ReplyProcess onEmptyClicked;
