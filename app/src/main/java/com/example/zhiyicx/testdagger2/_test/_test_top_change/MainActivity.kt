@@ -16,10 +16,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         nes.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, _ ->
-            view.layout(0,
-                    if (scrollY < 100) scrollY else (scrollY * 2 - view.height),
-                    view.right,
-                    (if (scrollY < 100) scrollY else (scrollY * 2 - view.height)) + view.height)
+            view.translationY = (scrollY * 2).toFloat()
+
+            btn2.translationY = scrollY.toFloat() * 2 + scrollY / 10
+
             Log.e("height", "$height")
         })
 
